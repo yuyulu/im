@@ -1,0 +1,8 @@
+/node_modules
+/vendor
+/.idea
+/.vagrant
+/public/*.log
+Homestead.json
+Homestead.yaml
+sftp-config.json

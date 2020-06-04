@@ -1,0 +1,18 @@
+{
+    "name": "tong/im",
+    "description": "im",
+    "type": "library",
+    "require": {
+        "sethink/swoole-orm": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "tong",
+            "email": "1065673465@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"tong\\im\\": "src/"}
+    },
+    "minimum-stability": "dev"
+}
