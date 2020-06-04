@@ -219,11 +219,6 @@ class ImServer
                 $uid = (int)$task_data['uid'];
                 $fd = $task_data['fd'];
 
-                Db::init($this->MysqlPool)
-                ->name('chat_message')
-                ->where(['to'=>$uid,'from'=>'sethink'])
-                ->select();
-
                 $db = Db::init($this->MysqlPool)->instance();
                 $statement = $db->prepare('select * from `chat_message` where `to` = ? or `from` = ?');
                 $statement->execute([$uid, $uid]);
