@@ -61,4 +61,4 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES ('1', '', '123456', '3c7423d34253c2af542b000dae36e138', '0', '13193835001', 'tong1', 'tong1', '', '0', '123456', '0', '0', '0');
-INSERT INTO `users` VALUES ('2', '', '123456', '3c7423d34253c2af542b000dae36e138', '0', '13193835002', 'tong2', 'tong2', '', '0', '123456', '0', '0', '0');
+INSERT INTO `users` VALUES ('2', '', '123456', 'f75a72e8bfb559a473ee33be6064d47d', '0', '13193835002', 'tong2', 'tong2', '', '0', '123456', '0', '0', '0');
