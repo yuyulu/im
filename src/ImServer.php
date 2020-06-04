@@ -222,10 +222,8 @@ class ImServer
 
                 $mysql = Db::init($this->MysqlPool)->instance();
                 $statement = $mysql->prepare('select * from `chat_message` where `to` = ? or `from` = ?');
-                $statement->execute([$uid, $uid]);
-                $result = $statement->fetchAll();
+                $result = $statement->execute([$uid, $uid]);
                 Db::init($this->MysqlPool)->put($mysql);
-
                 foreach ($result as & $v) {
                     if ($v['type'] == 'text') {
                         $v['message'] = base64_decode($v['message']);
