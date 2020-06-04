@@ -45,6 +45,11 @@ class ImServer
 
     }
 
+    public function start()
+    {
+        $this->WsServer->start();
+    }
+
     public function onWorkerStart($server, $worker_id)
     {
         $this->MysqlPool = new MysqlPool($this->MysqlConfig);
@@ -126,11 +131,6 @@ class ImServer
         return true;
     }
 
-    public function start()
-    {
-        $this->WsServer->start();
-    }
-
     public function onOpen(WebSocketServer $server, $request)
     {
         $server->push($request->fd, "hello, welcome\n");
@@ -157,7 +157,7 @@ class ImServer
                 'time' => $data['time'],
                 'type' => 'text',
                 'uid' => $data['from'],
-                ];
+            ];
             $server->push($target_fd, json_encode([
                 'event' => 'message',
                 'msg' => $msg,
@@ -190,6 +190,7 @@ class ImServer
                 $fd = $this->UserTable->get($uid, 'fd');
                 $this->WsServer->close($fd);
             }
+            
             $this->UserTable->set($uid, ['token' => $token]);
 
             $response->end('success');
@@ -224,6 +225,7 @@ class ImServer
                 $statement = $mysql->prepare('select * from `chat_message` where `to` = ? or `from` = ?');
                 $result = $statement->execute([$uid, $uid]);
                 Db::init($this->MysqlPool)->put($mysql);
+
                 foreach ($result as & $v) {
                     if ($v['type'] == 'text') {
                         $v['message'] = base64_decode($v['message']);
