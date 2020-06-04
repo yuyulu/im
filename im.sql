@@ -1,3 +1,20 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : 黄磊的连接
+Source Server Version : 50730
+Source Host           : 127.0.0.1:3306
+Source Database       : im
+
+Target Server Type    : MYSQL
+Target Server Version : 50730
+File Encoding         : 65001
+
+Date: 2020-06-04 13:27:22
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
 -- ----------------------------
 -- Table structure for chat_message
 -- ----------------------------
@@ -13,6 +30,10 @@ CREATE TABLE `chat_message` (
   KEY `from_to` (`from`,`to`),
   KEY `time` (`time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of chat_message
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for users
@@ -34,4 +55,10 @@ CREATE TABLE `users` (
   `updated_at` int(11) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否禁用 0为未禁用 1为禁用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES ('1', '', '123456', '3c7423d34253c2af542b000dae36e138', '0', '13193835001', 'tong1', 'tong1', '', '0', '123456', '0', '0', '0');
+INSERT INTO `users` VALUES ('2', '', '123456', '3c7423d34253c2af542b000dae36e138', '0', '13193835002', 'tong2', 'tong2', '', '0', '123456', '0', '0', '0');
