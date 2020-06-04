@@ -22,6 +22,7 @@ class ImServer
             'worker_num' => 1,
             'task_worker_num' => 4,
             'log_file' => 'im.log',
+            'task_enable_coroutine'    => true,
         ];
         $this->MysqlConfig = $MysqlConfig;
 
@@ -198,9 +199,9 @@ class ImServer
         $response->end('no access');
     }
 
-    public function onTask($server, $task_id, $worker_id, $data)
+    public function onTask($server, $task)
     {
-        $task_data = json_decode($data, true);
+        $task_data = json_decode($task->data, true);
         switch ($task_data['event']) {
             case 'saveMessage':
                 $data = [
@@ -219,8 +220,8 @@ class ImServer
                 $uid = (int)$task_data['uid'];
                 $fd = $task_data['fd'];
 
-                $db = Db::init($this->MysqlPool)->instance();
-                $statement = $db->prepare('select * from `chat_message` where `to` = ? or `from` = ?');
+                $mysql = Db::init($this->MysqlPool)->instance();
+                $statement = $mysql->prepare('select * from `chat_message` where `to` = ? or `from` = ?');
                 $statement->execute([$uid, $uid]);
                 $result = $statement->fetchAll();
                 Db::init($this->MysqlPool)->put($mysql);
